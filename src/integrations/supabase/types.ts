@@ -14,7 +14,204 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      products: {
+        Row: {
+          category: string
+          cost_price: number
+          created_at: string
+          id: string
+          name: string
+          sell_price: number
+          stock: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          category?: string
+          cost_price?: number
+          created_at?: string
+          id?: string
+          name: string
+          sell_price?: number
+          stock?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          category?: string
+          cost_price?: number
+          created_at?: string
+          id?: string
+          name?: string
+          sell_price?: number
+          stock?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      sale_items: {
+        Row: {
+          cost_price: number
+          created_at: string
+          id: string
+          product_id: string
+          product_name: string
+          quantity: number
+          sale_id: string
+          total_price: number
+          unit_price: number
+        }
+        Insert: {
+          cost_price?: number
+          created_at?: string
+          id?: string
+          product_id: string
+          product_name: string
+          quantity?: number
+          sale_id: string
+          total_price: number
+          unit_price: number
+        }
+        Update: {
+          cost_price?: number
+          created_at?: string
+          id?: string
+          product_id?: string
+          product_name?: string
+          quantity?: number
+          sale_id?: string
+          total_price?: number
+          unit_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sale_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sale_items_sale_id_fkey"
+            columns: ["sale_id"]
+            isOneToOne: false
+            referencedRelation: "sales"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sales: {
+        Row: {
+          created_at: string
+          customer_name: string
+          id: string
+          payment_method: string
+          sale_date: string
+          status: string
+          total_amount: number
+          total_profit: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          customer_name?: string
+          id?: string
+          payment_method?: string
+          sale_date?: string
+          status?: string
+          total_amount?: number
+          total_profit?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          customer_name?: string
+          id?: string
+          payment_method?: string
+          sale_date?: string
+          status?: string
+          total_amount?: number
+          total_profit?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      store_settings: {
+        Row: {
+          created_at: string
+          currency: string
+          email: string | null
+          id: string
+          low_stock_threshold: number
+          notify_daily_summary: boolean
+          notify_low_stock: boolean
+          notify_new_sale: boolean
+          owner_name: string
+          phone: string | null
+          store_name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          currency?: string
+          email?: string | null
+          id?: string
+          low_stock_threshold?: number
+          notify_daily_summary?: boolean
+          notify_low_stock?: boolean
+          notify_new_sale?: boolean
+          owner_name?: string
+          phone?: string | null
+          store_name?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          currency?: string
+          email?: string | null
+          id?: string
+          low_stock_threshold?: number
+          notify_daily_summary?: boolean
+          notify_low_stock?: boolean
+          notify_new_sale?: boolean
+          owner_name?: string
+          phone?: string | null
+          store_name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
